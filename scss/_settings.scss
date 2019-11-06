@@ -1,0 +1,72 @@
+//-------------------------------------------------------------------------------
+//
+//
+// Imports
+//
+//-------------------------------------------------------------------------------
+
+@import 'normalize';
+@import 'html5bp';
+@import '../node_modules/susy/sass/susy';
+@import '../node_modules/breakpoint-sass/stylesheets/breakpoint';
+
+//set box sizing to border box
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+//-------------------------------------------------------------------------------
+//
+//
+// Susy Settings
+//
+//-------------------------------------------------------------------------------
+
+$susy: (
+  'columns': susy-repeat(12),
+  'gutters': 0.25,
+  'spread': 'narrow',
+  'container-spread': 'narrow',
+);
+
+
+
+//-------------------------------------------------------------------------------
+//
+//
+// mixins
+//
+//-------------------------------------------------------------------------------
+
+//default type size
+$browser-context: 16;
+
+// this function returns value in ems
+@function em($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+
+@function rem($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+}

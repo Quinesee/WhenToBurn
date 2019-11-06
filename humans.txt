@@ -1,0 +1,18 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Joshua Norvelle -- Front-End Developer
+
+# THANKS
+
+    HTML5 Boilerplate
+    ZERB Foundation
+    Susy
+    Gulp
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, jQuery, Modernizr, Normalize.css

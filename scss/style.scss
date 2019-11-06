@@ -1,0 +1,336 @@
+//author: Joshua Norvelle | Magic Lamp Network
+//creation date 03/26/16
+//version 1.0
+
+//-------------------------------------------------------------------------------
+//
+//
+// Imports
+//
+//-------------------------------------------------------------------------------
+
+@import 'settings';
+
+//-------------------------------------------------------------------------------
+//
+//
+// Varibles
+//
+//-------------------------------------------------------------------------------
+
+//breakpoints
+$medium-screen: min-width em(640px);
+$nav-medium-screen: min-width em(960px);
+$large-screen: min-width em(1024px);
+$x-large-screen: min-width em(1280px);
+
+//colors
+$white: #fff;
+$black: #000;
+$brand-orange: #FF6025;
+$dark-green: #289841;
+$light-grey: #F5F5F5;
+$dark-blue: #163757;
+$darker-blue: #1F3A54;
+$darkest-blue: #09121A;
+$dusty-blue: #2C5378;
+$copy-color: #222;
+
+//-------------------------------------------------------------------------------
+//
+//
+// Helpers
+//
+//-------------------------------------------------------------------------------
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin link-colors ($link, $visit, $hover, $active) {
+  color: $link;
+  &:visited {
+    color: $visit;
+  }
+  &:hover {
+    color: $hover;
+  }
+  &:active {
+    color: $active;
+  }
+}
+
+@mixin center-vertically {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin section-shadow($zIndex) {
+  box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.75);
+  position: relative;
+  z-index: $zIndex;
+}
+
+@mixin font($name, $weight) {
+
+    @if ($name == 'roboto') {
+        font-family: 'Roboto', sans-serif;
+
+        @if ($weight == 'light') {
+            font-style: normal;
+            font-weight: 300;
+        }
+
+        @if ($weight == 'regular') {
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        @if ($weight == 'bold') {
+            font-style: normal;
+            font-weight: 700;
+        }
+    }
+
+}
+
+//-------------------------------------------------------------------------------
+//
+//
+// Main Styles
+//
+//-------------------------------------------------------------------------------
+
+body {
+    @include font('roboto', 'regular');
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper {
+    margin: 0 auto 0;
+    max-width: rem(1440);
+    padding: 0 rem(20);
+    position: relative;
+}
+
+//Buttons/Links
+////////////////////////////////////////////////////////
+%button {
+    @include link-colors($white, $white, $black, $black);
+    border: 0;
+    cursor: pointer;
+    display: block;
+    font-size: rem(18);
+    line-height: 1.4;
+    padding: rem(8) 0;
+    text-align: center;
+    text-decoration: none;
+
+    @include breakpoint($medium-screen) {
+        display: inline-block;
+        padding: rem(8) rem(32);
+    }
+}
+
+.button__opaque--white {
+    @extend %button;
+    @include link-colors($white, $white, $brand-orange, $brand-orange);
+    border: 1px solid $white;
+    background-color: rgba($white, 0.1);
+    position: relative;
+}
+
+.button__filled--red {
+    @extend %button;
+    background-color: $brand-orange;
+    border-radius: 5px;
+}
+
+///////////////////////////////////////////////
+//Home Page
+
+.home-page__full {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+.home-page__footer {
+  display: none;
+
+  @include breakpoint($nav-medium-screen) {
+    display: block;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+.footer-tabs {
+    display: flex;
+    align-items: flex-end;
+}
+
+.ft__tab {
+  background: url('./img/tab/secondary_tab1_01.png') right no-repeat;
+  height: rem(83);
+  position: relative;
+  padding-left: 70px;
+  margin-left: -100px;
+  margin-right: 100px;
+  flex: 1 0 27%;
+
+  @include breakpoint($x-large-screen) {
+    padding-left: 100px;
+    flex: 1 0 25%;
+  }
+
+  &:before {
+    content: '';
+    background-image: url('./img/tab/secondary_tab1_02.png');
+    height: rem(83);
+    width: rem(100);
+    position: absolute;
+    top: 0;
+    right: rem(-100);
+    z-index: 2;
+  }
+
+  &:nth-of-type(1) {
+    background-image: none;
+    background-color: #289841;
+    color: $white;
+    height: rem(95);
+    padding-left: 100px;
+    flex: 1 0 25%;
+
+    &:after {
+      background-color: #289841;
+      content: '';
+      height: 100%;
+      width: 500%;
+      position: absolute;
+      top: 0;
+      left: -500%;
+    }
+
+    &:before {
+      background-image: url('./img/tab/main_tab_03.png');
+      height: rem(96);
+      width: rem(110);
+      right: rem(-109);
+    }
+
+    .tab__content {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      p {
+        font-size: rem(16);
+        margin: 0;
+      }
+    }
+  }
+}
+
+.ft__tab a {
+  @include link-colors($white, $white, $brand-orange, $brand-orange);
+  @include font('roboto', 'bold');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-decoration: none;
+  width: 100%;
+
+  img {
+    margin-right: 1rem;
+  }
+
+  p {
+    font-size: rem(18);
+    margin: 0;
+  }
+
+}
+
+.footer-bottom {
+  background: #289841;
+  background-size: cover;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: rem(20) 0;
+  position: relative;
+
+  &:before,
+  &:after {
+    background-color: #289841;
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  &:before {
+    left: -100%;
+  }
+  &:after {
+    right: -100%;
+  }
+}
+
+.footer-bottom > p {
+  font-size: 12px;
+  flex: 0 0 40%;
+}
+
+.fb__newletter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fb__newletter a {
+  @include link-colors($white, $white, $black, $black);
+  background: transparent linear-gradient(7deg, #FF6025 0%, #FECD40 100%) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000045;
+  border-radius: 25px;
+  opacity: 1;
+  margin: 0 rem(8);
+  padding: rem(8) rem(24);
+  text-decoration: none;
+}
+
+.fb__newletter p {
+  font-size: rem(14);
+  margin: 0;
+}
+
+///////////////////////////////////////////////
+
+//-------------------------------------------------------------------------------
+//
+//
+// Imports
+//
+//-------------------------------------------------------------------------------
+
+@import 'helper';
